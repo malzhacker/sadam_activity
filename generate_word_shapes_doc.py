@@ -11,7 +11,7 @@ from docx.shared import Inches, Pt, RGBColor
 from lxml import etree
 
 ROOT = Path(__file__).resolve().parent
-OUTPUT = ROOT / "Student_Learning_Hub_20_Editable_Word_Shapes.docx"
+OUTPUT = ROOT / "Student_Learning_Hub_20_Word_Shapes_Portrait.docx"
 
 # Namespaces used by modern, editable Word Processing Shapes (DrawingML).
 W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
@@ -67,8 +67,10 @@ def add_text_paragraph(container, value, size=9, bold=False, color="222222", ali
     run = etree.SubElement(p, tag(W, "r"))
     rpr = etree.SubElement(run, tag(W, "rPr"))
     fonts = etree.SubElement(rpr, tag(W, "rFonts"))
-    fonts.set(tag(W, "ascii"), "Arial")
-    fonts.set(tag(W, "hAnsi"), "Arial")
+    fonts.set(tag(W, "ascii"), "Calibri")
+    fonts.set(tag(W, "hAnsi"), "Calibri")
+    fonts.set(tag(W, "eastAsia"), "Calibri")
+    fonts.set(tag(W, "cs"), "Calibri")
     if bold:
         etree.SubElement(rpr, tag(W, "b"))
     color_el = etree.SubElement(rpr, tag(W, "color"))
@@ -189,14 +191,14 @@ def line_shape(p, x, y, w, h=1, arrow=False, flip_h=False, dashed=False):
 def page_title(doc, number, title, module):
     p = doc.add_paragraph()
     p.paragraph_format.space_after = Pt(0)
-    r = p.add_run(f"INTERFACE {number:02d}  |  {title.upper()}")
-    r.font.name = "Arial"
-    r.font.size = Pt(16)
+    r = p.add_run(f"Interface {number:02d}: {title}")
+    r.font.name = "Calibri"
+    r.font.size = Pt(14)
     r.font.bold = True
     r.font.color.rgb = RGBColor(35, 35, 35)
-    r2 = p.add_run(f"    Modul: {module}    [LAKARAN GUNA WORD SHAPES]")
-    r2.font.name = "Arial"
-    r2.font.size = Pt(8)
+    r2 = p.add_run(f"    Modul: {module}")
+    r2.font.name = "Calibri"
+    r2.font.size = Pt(10)
     r2.font.color.rgb = RGBColor(95, 95, 95)
     anchor_p = doc.add_paragraph()
     anchor_p.paragraph_format.space_after = Pt(0)
@@ -205,117 +207,127 @@ def page_title(doc, number, title, module):
 
 
 def panel(p, x, y, number, label):
-    rectangle(p, x, y, 378, 216, "", False, "FFFFFF", "333333", dashed=False)
-    oval(p, x + 8, y + 8, 24, 24, str(number), "FFFFFF", "222222", 9, True)
-    textbox(p, x + 39, y + 8, 325, 24, label, 9, True, "left")
+    rectangle(p, x, y, 270, 330, "", False, "FFFFFF", "555555", dashed=False)
+    oval(p, x + 8, y + 8, 22, 22, str(number), "FFFFFF", "555555", 9, False)
+    textbox(p, x + 36, y + 8, 224, 22, label, 9, False, "left")
 
 
 def browser(p, x, y, w, h, title="Student Learning Hub"):
-    rectangle(p, x, y, w, h, "", True, "FFFFFF", "444444")
-    line_shape(p, x, y + 19, w, 1)
-    oval(p, x + 7, y + 6, 7, 7, "", "FFFFFF", "666666", 5)
-    oval(p, x + 19, y + 6, 7, 7, "", "FFFFFF", "666666", 5)
-    oval(p, x + 31, y + 6, 7, 7, "", "FFFFFF", "666666", 5)
-    textbox(p, x + 50, y + 3, w - 58, 14, title, 6, False, "left", "666666")
+    rectangle(p, x, y, w, h, "", True, "FFFFFF", "777777")
+    line_shape(p, x, y + 20, w, 1)
+    oval(p, x + 7, y + 6, 7, 7, "", "FFFFFF", "888888", 5)
+    oval(p, x + 19, y + 6, 7, 7, "", "FFFFFF", "888888", 5)
+    oval(p, x + 31, y + 6, 7, 7, "", "FFFFFF", "888888", 5)
+    textbox(p, x + 47, y + 3, w - 54, 14, title, 7, False, "left", "666666")
 
 
 def input_panel(p, x, y, fields, action, layout):
-    sx, sy, sw, sh = x + 17, y + 40, 344, 158
+    sx, sy, sw, sh = x + 12, y + 39, 246, 274
     browser(p, sx, sy, sw, sh)
-    content_x = sx + (74 if layout not in ("auth", "form") else 12)
+    content_x = sx + (52 if layout not in ("auth", "form") else 12)
     if layout not in ("auth", "form"):
-        rectangle(p, sx + 6, sy + 25, 58, sh - 32, "SLH\n\nHOME\nCOURSE\nTASK", False, "F2F2F2", "777777", 6, True)
-    textbox(p, content_x, sy + 25, sw - (content_x - sx) - 10, 17, "INPUT PENGGUNA", 7, True, "left")
+        rectangle(p, sx + 5, sy + 27, 40, sh - 34, "SLH\n\nHome\nCourse\nTask", False,
+                  "F2F2F2", "999999", 7, False)
+    textbox(p, content_x, sy + 28, sw - (content_x - sx) - 9, 18, "Input pengguna", 8, False, "left")
     shown = fields[:3]
-    usable = sw - (content_x - sx) - 20
+    usable = sw - (content_x - sx) - 17
+    label_width = 72 if layout not in ("auth", "form") else 82
     for idx, field in enumerate(shown):
-        fy = sy + 47 + idx * 27
-        textbox(p, content_x, fy, 95, 12, field, 6, True, "left")
-        rectangle(p, content_x + 98, fy - 2, usable - 98, 18, "________________", True, "FFFFFF", "666666", 6, False, align="left")
-    by = sy + 48 + len(shown) * 27
-    rectangle(p, content_x + max(0, usable - 105), min(by, sy + sh - 26), 105, 20,
-              action, True, "333333", "333333", 7, True)
-    textbox(p, x + 215, y + 188, 135, 15, "^ klik butang", 7, True, "right", "666666")
+        fy = sy + 55 + idx * 43
+        textbox(p, content_x, fy, label_width, 18, field, 7, False, "left")
+        rectangle(p, content_x, fy + 18, usable, 22, "________________", True,
+                  "FFFFFF", "888888", 7, False, align="left")
+    button_y = sy + 62 + len(shown) * 43
+    rectangle(p, content_x, min(button_y, sy + 205), min(usable, 130), 25,
+              action, True, "E7E7E7", "555555", 8, False)
+    textbox(p, content_x, sy + 235, usable, 18, "Klik butang selepas isi maklumat", 7, False, "left", "666666")
 
 
 def process_panel(p, x, y, process_text):
-    sx, sy, sw, sh = x + 17, y + 40, 344, 158
+    sx, sy, sw, sh = x + 12, y + 39, 246, 274
     browser(p, sx, sy, sw, sh)
-    textbox(p, sx + 12, sy + 25, sw - 24, 16, "PROSES DALAM SISTEM", 7, True, "center")
-    centers = [sx + 65, sx + 172, sx + 279]
-    labels = ["TERIMA\nINPUT", "SEMAK", "SIMPAN /\nPAPAR"]
-    for cx, label in zip(centers, labels):
-        rectangle(p, cx - 37, sy + 60, 74, 43, label, True, "FFFFFF", "333333", 7, True)
-    line_shape(p, centers[0] + 39, sy + 80, centers[1] - centers[0] - 78, 1, True)
-    line_shape(p, centers[1] + 39, sy + 80, centers[2] - centers[1] - 78, 1, True)
-    textbox(p, sx + 15, sy + 118, sw - 30, 24, process_text, 7, False, "center")
+    textbox(p, sx + 12, sy + 29, sw - 24, 18, "Proses dalam sistem", 8, False, "center")
+    center_x = sx + sw / 2
+    stages = [(sy + 57, "Terima input"), (sy + 119, "Semak maklumat"), (sy + 181, "Simpan / paparkan")]
+    for stage_y, label in stages:
+        rectangle(p, center_x - 67, stage_y, 134, 34, label, True, "FFFFFF", "666666", 8, False)
+    line_shape(p, center_x, sy + 92, 1, 26, True)
+    line_shape(p, center_x, sy + 154, 1, 26, True)
+    textbox(p, sx + 14, sy + 228, sw - 28, 28, process_text, 8, False, "center")
 
 
 def popup_panel(p, x, y, message):
-    sx, sy, sw, sh = x + 17, y + 40, 344, 164
+    sx, sy, sw, sh = x + 12, y + 39, 246, 274
     browser(p, sx, sy, sw, sh)
-    # Background placeholders.
-    for row in range(3):
-        rectangle(p, sx + 12, sy + 31 + row * 27, sw - 24, 18, "", True, "F8F8F8", "BBBBBB", dashed=True)
-    rectangle(p, sx + 55, sy + 45, sw - 110, 91, "", True, "FFFFFF", "222222")
-    textbox(p, sx + 68, sy + 52, sw - 136, 17, "POPUP MESSAGE", 8, True, "left")
-    textbox(p, sx + 68, sy + 72, sw - 136, 31, message, 8, False, "left")
+    for row in range(5):
+        rectangle(p, sx + 11, sy + 31 + row * 33, sw - 22, 21, "", True,
+                  "F8F8F8", "BBBBBB", dashed=True)
+    modal_x, modal_y, modal_w, modal_h = sx + 27, sy + 69, 192, 137
+    rectangle(p, modal_x, modal_y, modal_w, modal_h, "", True, "FFFFFF", "444444")
+    textbox(p, modal_x + 12, modal_y + 11, modal_w - 24, 18, "Popup message", 9, False, "left")
+    textbox(p, modal_x + 12, modal_y + 36, modal_w - 24, 45, message, 8, False, "left")
     confirm = any(word in message.lower() for word in ("sahkan", "pasti", "bermula", "kosong"))
     if confirm:
-        rectangle(p, sx + 77, sy + 108, 62, 20, "BATAL", True, "FFFFFF", "333333", 7, True)
-        rectangle(p, sx + sw - 139, sy + 108, 62, 20, "YA", True, "333333", "333333", 7, True)
+        rectangle(p, modal_x + 12, modal_y + 96, 65, 24, "Batal", True, "FFFFFF", "666666", 8, False)
+        rectangle(p, modal_x + modal_w - 77, modal_y + 96, 65, 24, "Ya", True, "E7E7E7", "555555", 8, False)
     else:
-        rectangle(p, sx + sw - 139, sy + 108, 62, 20, "OK", True, "333333", "333333", 7, True)
-    textbox(p, x + 18, y + 188, 170, 15, "nota: mesej keluar", 7, False, "left", "666666")
+        rectangle(p, modal_x + modal_w - 77, modal_y + 96, 65, 24, "OK", True, "E7E7E7", "555555", 8, False)
+    textbox(p, sx + 12, sy + 238, sw - 24, 19, "Mesej keluar selepas proses", 7, False, "left", "666666")
 
 
 def output_panel(p, x, y, output, layout):
-    sx, sy, sw, sh = x + 17, y + 40, 344, 164
+    sx, sy, sw, sh = x + 12, y + 39, 246, 274
     browser(p, sx, sy, sw, sh)
-    rectangle(p, sx + 6, sy + 25, 58, sh - 32, "SLH\n\nHOME\nCOURSE\nTASK", False, "F2F2F2", "777777", 6, True)
-    cx = sx + 75
-    cw = sw - 87
-    textbox(p, cx, sy + 25, cw, 17, "OUTPUT", 7, True, "left")
+    rectangle(p, sx + 5, sy + 27, 40, sh - 34, "SLH\n\nHome\nCourse\nTask", False,
+              "F2F2F2", "999999", 7, False)
+    cx = sx + 53
+    cw = sw - 62
+    textbox(p, cx, sy + 29, cw, 18, "Output sistem", 8, False, "left")
     if layout in ("dashboard", "cards"):
         for j in range(3):
-            rectangle(p, cx + j * 82, sy + 48, 72, 45, f"KAD {j + 1}\n____", True, "FFFFFF", "555555", 6, False)
-        rectangle(p, cx, sy + 102, cw - 2, 29, "GRAF / KEMAJUAN  / / /", False, "FFFFFF", "777777", 6)
+            rectangle(p, cx + j * 61, sy + 56, 55, 52, f"Kad {j + 1}\n____", True,
+                      "FFFFFF", "777777", 7, False)
+        rectangle(p, cx, sy + 120, cw - 1, 75, "Graf / kemajuan\n\n /  /  /", False,
+                  "FFFFFF", "888888", 7, False)
     elif layout == "result":
-        oval(p, cx + 5, sy + 47, 73, 73, "86\n/100" if "86" in output else "80%", "FFFFFF", "333333", 12, True)
+        oval(p, cx + 3, sy + 59, 73, 73, "86\n/100" if "86" in output else "80%",
+             "FFFFFF", "555555", 12, False)
         for j in range(3):
-            rectangle(p, cx + 95, sy + 48 + j * 27, cw - 103, 18, "________________", True, "FFFFFF", "777777", 6, False)
+            rectangle(p, cx + 86, sy + 59 + j * 36, cw - 92, 24, "______", True,
+                      "FFFFFF", "888888", 7, False)
     elif layout == "profile":
-        oval(p, cx + 8, sy + 47, 55, 55, "FOTO", "FFFFFF", "555555", 7, True)
+        oval(p, cx + 5, sy + 59, 61, 61, "Foto", "FFFFFF", "777777", 8, False)
         for j in range(3):
-            rectangle(p, cx + 78, sy + 45 + j * 27, cw - 86, 18, "________________", True, "FFFFFF", "777777", 6, False)
+            rectangle(p, cx + 78, sy + 57 + j * 36, cw - 84, 24, "______", True,
+                      "FFFFFF", "888888", 7, False)
     elif layout == "quiz":
         for j, option in enumerate(["A", "B", "C", "D"]):
-            oval(p, cx, sy + 43 + j * 23, 16, 16, option, "FFFFFF", "555555", 6, False)
-            line_shape(p, cx + 25, sy + 51 + j * 23, cw - 32, 1)
+            oval(p, cx, sy + 54 + j * 34, 19, 19, option, "FFFFFF", "777777", 7, False)
+            line_shape(p, cx + 28, sy + 63 + j * 34, cw - 34, 1)
     else:
-        for j in range(4):
-            rectangle(p, cx, sy + 43 + j * 24, cw - 2, 18, f"{j + 1}.  ____________________", True,
-                      "FFFFFF", "777777", 6, False, align="left")
-    textbox(p, cx, sy + 139, cw, 16, output, 7, True, "left")
+        for j in range(5):
+            rectangle(p, cx, sy + 52 + j * 33, cw - 1, 24, f"{j + 1}.  ______________", True,
+                      "FFFFFF", "888888", 7, False, align="left")
+    textbox(p, cx, sy + 232, cw, 24, output, 8, False, "left")
 
 
 def flow_arrows(p):
-    line_shape(p, 405, 181, 21, 1, True)
-    textbox(p, 398, 161, 37, 14, "NEXT", 6, True, "center", "666666")
-    line_shape(p, 616, 291, 1, 28, True)
-    textbox(p, 620, 294, 48, 14, "POPUP", 6, True, "left", "666666")
-    line_shape(p, 405, 429, 21, 1, True, True)
-    textbox(p, 396, 436, 48, 14, "HASIL", 6, True, "center", "666666")
+    line_shape(p, 290, 222, 15, 1, True)
+    textbox(p, 280, 202, 35, 14, "Next", 7, False, "center", "666666")
+    line_shape(p, 442, 390, 1, 15, True)
+    textbox(p, 448, 390, 42, 14, "Popup", 7, False, "left", "666666")
+    line_shape(p, 290, 572, 15, 1, True, True)
+    textbox(p, 280, 578, 35, 14, "Hasil", 7, False, "center", "666666")
 
 
 def draw_storyboard(p, screen):
     title, module, fields, action, process_text, popup, output, layout = screen
-    coords = [(25, 74), (426, 74), (25, 320), (426, 320)]
+    coords = [(18, 58), (307, 58), (18, 405), (307, 405)]
     labels = [
-        "INPUT - pengguna isi / pilih",
-        "PROSES - sistem jalankan tindakan",
-        "POPUP - mesej kepada pengguna",
-        "OUTPUT - hasil dipaparkan",
+        "Input - pengguna isi atau pilih",
+        "Proses - tindakan dalam sistem",
+        "Popup - mesej kepada pengguna",
+        "Output - hasil sistem",
     ]
     for number, ((x, y), label) in enumerate(zip(coords, labels), 1):
         panel(p, x, y, number, label)
@@ -324,8 +336,8 @@ def draw_storyboard(p, screen):
     popup_panel(p, *coords[2], popup)
     output_panel(p, *coords[3], output, layout)
     flow_arrows(p)
-    textbox(p, 30, 548, 360, 15, "Aliran: INPUT  ->  PROSES  ->  POPUP  ->  OUTPUT", 8, True, "left", "555555")
-    textbox(p, 522, 548, 285, 15, "Semua elemen boleh diedit dalam Word", 8, False, "right", "555555")
+    textbox(p, 22, 748, 360, 18, "Aliran: Input  ->  Proses  ->  Popup  ->  Output", 8, False, "left", "666666")
+    textbox(p, 385, 748, 188, 18, "Boleh diedit dalam Word", 8, False, "right", "666666")
 
 
 def set_cell_shading(cell, fill):
@@ -351,21 +363,21 @@ def set_cell_margins(cell, top=70, start=90, bottom=70, end=90):
 
 
 def setup_section(section):
-    section.orientation = WD_ORIENT.LANDSCAPE
-    section.page_width = Inches(11.69)
-    section.page_height = Inches(8.27)
-    section.top_margin = Inches(0.28)
-    section.bottom_margin = Inches(0.28)
-    section.left_margin = Inches(0.35)
-    section.right_margin = Inches(0.35)
+    section.orientation = WD_ORIENT.PORTRAIT
+    section.page_width = Inches(8.27)
+    section.page_height = Inches(11.69)
+    section.top_margin = Inches(0.4)
+    section.bottom_margin = Inches(0.4)
+    section.left_margin = Inches(0.4)
+    section.right_margin = Inches(0.4)
     section.header_distance = Inches(0.12)
-    section.footer_distance = Inches(0.12)
+    section.footer_distance = Inches(0.18)
 
 
 def add_page_number(paragraph):
     paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     run = paragraph.add_run("Muka surat ")
-    run.font.name = "Arial"
+    run.font.name = "Calibri"
     run.font.size = Pt(8)
     begin = OxmlElement("w:fldChar")
     begin.set(qn("w:fldCharType"), "begin")
@@ -382,14 +394,14 @@ def heading(doc, title, subtitle=""):
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.paragraph_format.space_after = Pt(2)
     r = p.add_run(title)
-    r.font.name = "Arial"
+    r.font.name = "Calibri"
     r.font.bold = True
     r.font.size = Pt(22)
     if subtitle:
         p2 = doc.add_paragraph()
         p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
         r2 = p2.add_run(subtitle)
-        r2.font.name = "Arial"
+        r2.font.name = "Calibri"
         r2.font.size = Pt(10)
         r2.font.color.rgb = RGBColor(90, 90, 90)
 
@@ -397,26 +409,26 @@ def heading(doc, title, subtitle=""):
 def build_document():
     doc = Document()
     setup_section(doc.sections[0])
-    doc.styles["Normal"].font.name = "Arial"
-    doc.styles["Normal"].font.size = Pt(9)
+    doc.styles["Normal"].font.name = "Calibri"
+    doc.styles["Normal"].font.size = Pt(11)
 
     # Plain cover intentionally resembles a normal student-made Word assignment.
     p = doc.add_paragraph()
-    p.paragraph_format.space_before = Pt(70)
+    p.paragraph_format.space_before = Pt(120)
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = p.add_run("STUDENT LEARNING HUB SYSTEM")
-    r.font.name = "Arial"
+    r = p.add_run("Student Learning Hub System")
+    r.font.name = "Calibri"
     r.font.bold = True
-    r.font.size = Pt(28)
+    r.font.size = Pt(22)
     p2 = doc.add_paragraph()
     p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r2 = p2.add_run("20 LAKARAN INTERFACE MENGGUNAKAN WORD SHAPES")
-    r2.font.name = "Arial"
-    r2.font.bold = True
-    r2.font.size = Pt(19)
+    r2 = p2.add_run("20 Lakaran Interface Menggunakan Word Shapes")
+    r2.font.name = "Calibri"
+    r2.font.bold = False
+    r2.font.size = Pt(16)
     p3 = doc.add_paragraph()
     p3.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p3.add_run("Input  ->  Proses  ->  Popup Message  ->  Output").italic = True
+    p3.add_run("Input  ->  Proses  ->  Popup Message  ->  Output")
     doc.add_paragraph()
     table = doc.add_table(rows=4, cols=2)
     table.style = "Table Grid"
@@ -433,30 +445,12 @@ def build_document():
     note.alignment = WD_ALIGN_PARAGRAPH.CENTER
     note.paragraph_format.space_before = Pt(18)
     nr = note.add_run("Nota: Semua lakaran dibina menggunakan rectangle, arrow, line dan text box Microsoft Word. Tiada gambar digunakan.")
-    nr.font.name = "Arial"
+    nr.font.name = "Calibri"
     nr.font.size = Pt(9)
     doc.add_page_break()
 
-    # Task allocation and interface index.
-    heading(doc, "PEMBAHAGIAN TUGAS", "Tepat 20 interface")
-    allocation = doc.add_table(rows=1, cols=4)
-    allocation.style = "Table Grid"
-    allocation.alignment = WD_TABLE_ALIGNMENT.CENTER
-    for i, value in enumerate(["Ahli", "Interface", "Bilangan", "Tugas tambahan"]):
-        allocation.rows[0].cells[i].text = value
-        allocation.rows[0].cells[i].paragraphs[0].runs[0].bold = True
-        set_cell_shading(allocation.rows[0].cells[i], "D9D9D9")
-    allocations = [
-        ("Ahli 1", "01-07: Akaun, dashboard, kursus", "7", "Semak bentuk dan label"),
-        ("Ahli 2", "08-14: Pembelajaran dan tugasan", "7", "Semak aliran proses"),
-        ("Ahli 3", "15-20: Kuiz dan komunikasi", "6", "Gabung dokumen"),
-    ]
-    for values in allocations:
-        cells = allocation.add_row().cells
-        for i, value in enumerate(values):
-            cells[i].text = value
-            set_cell_margins(cells[i])
-    doc.add_paragraph()
+    # Interface index only; the task-allocation section is intentionally omitted.
+    heading(doc, "Senarai 20 Interface")
     index = doc.add_table(rows=1, cols=3)
     index.style = "Table Grid"
     index.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -483,10 +477,10 @@ def build_document():
         add_page_number(section.footer.paragraphs[0])
 
     props = doc.core_properties
-    props.title = "Student Learning Hub - 20 Editable Word Shapes Storyboards"
-    props.subject = "Editable Microsoft Word shapes: input, process, popup and output"
+    props.title = "Student Learning Hub - 20 Portrait Word Shapes Storyboards"
+    props.subject = "A4 portrait, editable Microsoft Word shapes: input, process, popup and output"
     props.author = "Student Learning Hub Group"
-    props.keywords = "Word shapes, storyboard, interface, editable, no images"
+    props.keywords = "Word shapes, portrait, Calibri, storyboard, interface, editable, no images"
     doc.save(OUTPUT)
     print(f"CREATED={OUTPUT}")
     print(f"INTERFACES={len(SCREENS)}")

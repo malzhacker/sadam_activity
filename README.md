@@ -8,11 +8,15 @@ Setiap storyboard menunjukkan aliran:
 
 ## Muat turun dokumen Word
 
-### Versi disyorkan — objek Word boleh diedit, tanpa gambar
+### Versi disyorkan — A4 portrait, Calibri dan objek Word boleh diedit
+
+[Download Student_Learning_Hub_20_Word_Shapes_Portrait.docx](./Student_Learning_Hub_20_Word_Shapes_Portrait.docx)
+
+Versi ini menggunakan susun atur A4 portrait dan font Calibri biasa. Semua lakaran dibina menggunakan rectangle, rounded rectangle, oval, line, arrow dan text box Microsoft Word. Setiap elemen boleh dipilih melalui menu **Shape Format**. Tiada gambar terbenam dan tiada bahagian pembahagian tugas.
+
+### Versi Word Shapes landscape terdahulu
 
 [Download Student_Learning_Hub_20_Editable_Word_Shapes.docx](./Student_Learning_Hub_20_Editable_Word_Shapes.docx)
-
-Versi ini dibina sepenuhnya menggunakan objek Microsoft Word: rectangle, rounded rectangle, oval, line, arrow dan text box. Semua elemen boleh dipilih dan diedit melalui menu **Shape Format**. Fail ini tidak mengandungi PNG atau imej terbenam.
 
 ### Versi storyboard bergambar
 
