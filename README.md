@@ -8,6 +8,14 @@ Setiap storyboard menunjukkan aliran:
 
 ## Muat turun dokumen Word
 
+### Versi disyorkan — objek Word boleh diedit, tanpa gambar
+
+[Download Student_Learning_Hub_20_Editable_Word_Shapes.docx](./Student_Learning_Hub_20_Editable_Word_Shapes.docx)
+
+Versi ini dibina sepenuhnya menggunakan objek Microsoft Word: rectangle, rounded rectangle, oval, line, arrow dan text box. Semua elemen boleh dipilih dan diedit melalui menu **Shape Format**. Fail ini tidak mengandungi PNG atau imej terbenam.
+
+### Versi storyboard bergambar
+
 [Download Student_Learning_Hub_20_Storyboard_Sketch.docx](./Student_Learning_Hub_20_Storyboard_Sketch.docx)
 
 ## Kandungan
@@ -33,4 +41,4 @@ Setiap storyboard menunjukkan aliran:
 19. Pengumuman
 20. Notifikasi
 
-Folder `storyboard_previews/` mengandungi kesemua lakaran dalam format PNG. Fail `generate_storyboard_doc.py` boleh digunakan untuk menjana semula dokumen.
+Folder `storyboard_previews/` mengandungi lakaran versi bergambar dalam format PNG. Fail `generate_word_shapes_doc.py` menjana versi Word Shapes tanpa gambar, manakala `generate_storyboard_doc.py` menjana versi storyboard bergambar.
