@@ -215,10 +215,7 @@ def panel(p, x, y, number, label):
 def browser(p, x, y, w, h, title="Student Learning Hub"):
     rectangle(p, x, y, w, h, "", True, "FFFFFF", "777777")
     line_shape(p, x, y + 20, w, 1)
-    oval(p, x + 7, y + 6, 7, 7, "", "FFFFFF", "888888", 5)
-    oval(p, x + 19, y + 6, 7, 7, "", "FFFFFF", "888888", 5)
-    oval(p, x + 31, y + 6, 7, 7, "", "FFFFFF", "888888", 5)
-    textbox(p, x + 47, y + 3, w - 54, 14, title, 7, False, "left", "666666")
+    textbox(p, x + 10, y + 3, w - 18, 14, title, 7, False, "left", "666666")
 
 
 def input_panel(p, x, y, fields, action, layout):
