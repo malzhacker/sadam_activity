@@ -23,26 +23,26 @@ SHAPE_IDS = count(1)
 
 # Exactly 20 requested interfaces.
 SCREENS = [
-    ("Login", "Akaun", ["E-mel", "Kata laluan"], "LOG MASUK", "Sistem sahkan akaun", "Login berjaya!", "Dashboard dibuka", "auth"),
-    ("Pendaftaran Pelajar", "Akaun", ["Nama / ID", "E-mel", "Kata laluan"], "DAFTAR", "Sistem semak dan simpan", "Pendaftaran berjaya", "Halaman login dipaparkan", "form"),
-    ("Lupa Kata Laluan", "Akaun", ["E-mel berdaftar"], "HANTAR PAUTAN", "Sistem hantar e-mel reset", "Pautan telah dihantar", "Arahan semak e-mel", "auth"),
-    ("Dashboard Pelajar", "Utama", ["Pilih kad aktiviti"], "BUKA", "Sistem ambil ringkasan", "Tugasan hampir tamat!", "Kursus dan kemajuan", "dashboard"),
-    ("Profil Pelajar", "Akaun", ["Gambar", "Telefon", "Bio"], "SIMPAN", "Sistem kemas kini rekod", "Profil berjaya dikemas kini", "Profil baharu dipaparkan", "profile"),
-    ("Senarai Kursus", "Kursus", ["Carian", "Kategori"], "CARI", "Sistem tapis kursus", "Kursus disimpan", "Senarai kursus sepadan", "cards"),
-    ("Butiran Kursus", "Kursus", ["Pilih tab / modul"], "BUKA MODUL", "Sistem ambil kandungan", "Modul berjaya dibuka", "Info pensyarah dan modul", "detail"),
-    ("Pendaftaran Kursus", "Kursus", ["Semester", "Seksyen", "Setuju syarat"], "DAFTAR KURSUS", "Semak kelayakan dan kapasiti", "Sahkan pendaftaran?", "Status: BERJAYA", "form"),
-    ("Modul Pembelajaran", "Pembelajaran", ["Pilih topik"], "TANDA SELESAI", "Sistem rekod kemajuan", "Kemajuan direkodkan", "Modul seterusnya dibuka", "learning"),
-    ("Bahan Pembelajaran", "Pembelajaran", ["Carian", "Jenis bahan"], "MUAT TURUN", "Sistem sediakan fail", "Fail berjaya dimuat turun", "Nota, slaid dan video", "table"),
-    ("Senarai Tugasan", "Tugasan", ["Kursus", "Status"], "TAPIS", "Susun ikut tarikh akhir", "Tarikh akhir hari ini!", "Senarai dan status tugasan", "list"),
-    ("Butiran Tugasan", "Tugasan", ["Pilih lampiran / rubrik"], "BUKA", "Sistem ambil arahan", "Lampiran dimuat turun", "Arahan dan markah penuh", "detail"),
-    ("Penghantaran Tugasan", "Tugasan", ["Fail DOCX/PDF", "Komen"], "HANTAR", "Sistem semak dan upload", "Pasti mahu hantar?", "Resit penghantaran", "upload"),
-    ("Keputusan Tugasan", "Tugasan", ["Pilih tugasan dinilai"], "LIHAT", "Sistem ambil keputusan", "Markah telah diterbitkan", "86/100 dan komen", "result"),
-    ("Senarai Kuiz", "Kuiz", ["Kursus", "Kuiz tersedia"], "MULAKAN", "Sistem semak masa", "Masa 15 minit bermula", "Soalan kuiz dibuka", "list"),
-    ("Menjawab Kuiz", "Kuiz", ["Pilih jawapan A-D"], "HANTAR KUIZ", "Sistem simpan jawapan", "Masih ada soalan kosong!", "Jawapan direkodkan", "quiz"),
-    ("Keputusan Kuiz", "Kuiz", ["Pilih semak jawapan"], "SEMAK", "Sistem kira skor", "Kuiz selesai: 80%", "8 betul dan 2 salah", "result"),
-    ("Forum Perbincangan", "Komunikasi", ["Tajuk", "Kandungan topik"], "TERBIT", "Sistem simpan topik", "Topik berjaya diterbitkan", "Topik dan balasan", "forum"),
-    ("Pengumuman", "Komunikasi", ["Pilih pengumuman"], "BUKA", "Sistem tanda dibaca", "Ditanda sebagai dibaca", "Butiran pengumuman", "announcement"),
-    ("Notifikasi", "Komunikasi", ["Kategori", "Status baca"], "TANDA DIBACA", "Sistem kemas kini status", "Semua notifikasi dibaca", "Notifikasi terkini", "notifications"),
+    ("Login", "Account", ["Email", "Password"], "LOG IN", "System verifies account", "Login successful!", "Dashboard opened", "auth"),
+    ("Student Registration", "Account", ["Name / ID", "Email", "Password"], "REGISTER", "System checks and saves", "Registration successful", "Login page displayed", "form"),
+    ("Forgot Password", "Account", ["Registered email"], "SEND LINK", "System sends reset email", "Link has been sent", "Check email instructions", "auth"),
+    ("Student Dashboard", "Main", ["Select activity card"], "OPEN", "System retrieves summary", "Assignment due soon!", "Courses and progress", "dashboard"),
+    ("Student Profile", "Account", ["Photo", "Phone", "Bio"], "SAVE", "System updates record", "Profile updated successfully", "Updated profile displayed", "profile"),
+    ("Course List", "Courses", ["Search", "Category"], "SEARCH", "System filters courses", "Course saved", "Matching course list", "cards"),
+    ("Course Details", "Courses", ["Select tab / module"], "OPEN MODULE", "System retrieves content", "Module opened successfully", "Lecturer and module info", "detail"),
+    ("Course Registration", "Courses", ["Semester", "Section", "Agree to terms"], "REGISTER COURSE", "Check eligibility and capacity", "Confirm registration?", "Status: SUCCESSFUL", "form"),
+    ("Learning Module", "Learning", ["Select topic"], "MARK COMPLETE", "System records progress", "Progress recorded", "Next module opened", "learning"),
+    ("Learning Materials", "Learning", ["Search", "Material type"], "DOWNLOAD", "System prepares file", "File downloaded successfully", "Notes, slides and videos", "table"),
+    ("Assignment List", "Assignments", ["Course", "Status"], "FILTER", "Sort by due date", "Due date is today!", "Assignment list and status", "list"),
+    ("Assignment Details", "Assignments", ["Select attachment / rubric"], "OPEN", "System retrieves instructions", "Attachment downloaded", "Instructions and full marks", "detail"),
+    ("Assignment Submission", "Assignments", ["DOCX/PDF file", "Comment"], "SUBMIT", "System checks and uploads", "Are you sure to submit?", "Submission receipt", "upload"),
+    ("Assignment Results", "Assignments", ["Select graded assignment"], "VIEW", "System retrieves results", "Marks have been published", "86/100 and comments", "result"),
+    ("Quiz List", "Quizzes", ["Course", "Available quiz"], "START", "System checks time", "15 minute timer starts", "Quiz questions opened", "list"),
+    ("Answering Quiz", "Quizzes", ["Select answer A-D"], "SUBMIT QUIZ", "System saves answers", "There are unanswered questions!", "Answers recorded", "quiz"),
+    ("Quiz Results", "Quizzes", ["Select review answers"], "REVIEW", "System calculates score", "Quiz complete: 80%", "8 correct and 2 wrong", "result"),
+    ("Discussion Forum", "Communication", ["Title", "Topic content"], "PUBLISH", "System saves topic", "Topic published successfully", "Topics and replies", "forum"),
+    ("Announcements", "Communication", ["Select announcement"], "OPEN", "System marks as read", "Marked as read", "Announcement details", "announcement"),
+    ("Notifications", "Communication", ["Category", "Read status"], "MARK READ", "System updates status", "All notifications read", "Latest notifications", "notifications"),
 ]
 
 
@@ -196,7 +196,7 @@ def page_title(doc, number, title, module):
     r.font.size = Pt(14)
     r.font.bold = True
     r.font.color.rgb = RGBColor(35, 35, 35)
-    r2 = p.add_run(f"    Modul: {module}")
+    r2 = p.add_run(f"    Module: {module}")
     r2.font.name = "Calibri"
     r2.font.size = Pt(10)
     r2.font.color.rgb = RGBColor(95, 95, 95)
@@ -225,7 +225,7 @@ def input_panel(p, x, y, fields, action, layout):
     if layout not in ("auth", "form"):
         rectangle(p, sx + 5, sy + 27, 40, sh - 34, "SLH\n\nHome\nCourse\nTask", False,
                   "F2F2F2", "999999", 7, False)
-    textbox(p, content_x, sy + 28, sw - (content_x - sx) - 9, 18, "Input pengguna", 8, False, "left")
+    textbox(p, content_x, sy + 28, sw - (content_x - sx) - 9, 18, "User input", 8, False, "left")
     shown = fields[:3]
     usable = sw - (content_x - sx) - 17
     label_width = 72 if layout not in ("auth", "form") else 82
@@ -237,15 +237,15 @@ def input_panel(p, x, y, fields, action, layout):
     button_y = sy + 62 + len(shown) * 43
     rectangle(p, content_x, min(button_y, sy + 205), min(usable, 130), 25,
               action, True, "E7E7E7", "555555", 8, False)
-    textbox(p, content_x, sy + 235, usable, 18, "Klik butang selepas isi maklumat", 7, False, "left", "666666")
+    textbox(p, content_x, sy + 235, usable, 18, "Click button after filling in", 7, False, "left", "666666")
 
 
 def process_panel(p, x, y, process_text):
     sx, sy, sw, sh = x + 12, y + 39, 246, 274
     browser(p, sx, sy, sw, sh)
-    textbox(p, sx + 12, sy + 29, sw - 24, 18, "Proses dalam sistem", 8, False, "center")
+    textbox(p, sx + 12, sy + 29, sw - 24, 18, "System process", 8, False, "center")
     center_x = sx + sw / 2
-    stages = [(sy + 57, "Terima input"), (sy + 119, "Semak maklumat"), (sy + 181, "Simpan / paparkan")]
+    stages = [(sy + 57, "Receive input"), (sy + 119, "Validate data"), (sy + 181, "Save / display")]
     for stage_y, label in stages:
         rectangle(p, center_x - 67, stage_y, 134, 34, label, True, "FFFFFF", "666666", 8, False)
     line_shape(p, center_x, sy + 92, 1, 26, True)
@@ -263,13 +263,13 @@ def popup_panel(p, x, y, message):
     rectangle(p, modal_x, modal_y, modal_w, modal_h, "", True, "FFFFFF", "444444")
     textbox(p, modal_x + 12, modal_y + 11, modal_w - 24, 18, "Popup message", 9, False, "left")
     textbox(p, modal_x + 12, modal_y + 36, modal_w - 24, 45, message, 8, False, "left")
-    confirm = any(word in message.lower() for word in ("sahkan", "pasti", "bermula", "kosong"))
+    confirm = any(word in message.lower() for word in ("confirm", "sure", "starts", "unanswered"))
     if confirm:
-        rectangle(p, modal_x + 12, modal_y + 96, 65, 24, "Batal", True, "FFFFFF", "666666", 8, False)
-        rectangle(p, modal_x + modal_w - 77, modal_y + 96, 65, 24, "Ya", True, "E7E7E7", "555555", 8, False)
+        rectangle(p, modal_x + 12, modal_y + 96, 65, 24, "Cancel", True, "FFFFFF", "666666", 8, False)
+        rectangle(p, modal_x + modal_w - 77, modal_y + 96, 65, 24, "Yes", True, "E7E7E7", "555555", 8, False)
     else:
         rectangle(p, modal_x + modal_w - 77, modal_y + 96, 65, 24, "OK", True, "E7E7E7", "555555", 8, False)
-    textbox(p, sx + 12, sy + 238, sw - 24, 19, "Mesej keluar selepas proses", 7, False, "left", "666666")
+    textbox(p, sx + 12, sy + 238, sw - 24, 19, "Message appears after process", 7, False, "left", "666666")
 
 
 def output_panel(p, x, y, output, layout):
@@ -279,12 +279,12 @@ def output_panel(p, x, y, output, layout):
               "F2F2F2", "999999", 7, False)
     cx = sx + 53
     cw = sw - 62
-    textbox(p, cx, sy + 29, cw, 18, "Output sistem", 8, False, "left")
+    textbox(p, cx, sy + 29, cw, 18, "System output", 8, False, "left")
     if layout in ("dashboard", "cards"):
         for j in range(3):
-            rectangle(p, cx + j * 61, sy + 56, 55, 52, f"Kad {j + 1}\n____", True,
+            rectangle(p, cx + j * 61, sy + 56, 55, 52, f"Card {j + 1}\n____", True,
                       "FFFFFF", "777777", 7, False)
-        rectangle(p, cx, sy + 120, cw - 1, 75, "Graf / kemajuan\n\n /  /  /", False,
+        rectangle(p, cx, sy + 120, cw - 1, 75, "Chart / progress\n\n /  /  /", False,
                   "FFFFFF", "888888", 7, False)
     elif layout == "result":
         oval(p, cx + 3, sy + 59, 73, 73, "86\n/100" if "86" in output else "80%",
@@ -293,7 +293,7 @@ def output_panel(p, x, y, output, layout):
             rectangle(p, cx + 86, sy + 59 + j * 36, cw - 92, 24, "______", True,
                       "FFFFFF", "888888", 7, False)
     elif layout == "profile":
-        oval(p, cx + 5, sy + 59, 61, 61, "Foto", "FFFFFF", "777777", 8, False)
+        oval(p, cx + 5, sy + 59, 61, 61, "Photo", "FFFFFF", "777777", 8, False)
         for j in range(3):
             rectangle(p, cx + 78, sy + 57 + j * 36, cw - 84, 24, "______", True,
                       "FFFFFF", "888888", 7, False)
@@ -321,10 +321,10 @@ def draw_storyboard(p, screen):
     title, module, fields, action, process_text, popup, output, layout = screen
     coords = [(18, 58), (307, 58), (18, 405), (307, 405)]
     labels = [
-        "Input - pengguna isi atau pilih",
-        "Proses - tindakan dalam sistem",
-        "Popup - mesej kepada pengguna",
-        "Output - hasil sistem",
+        "Input - user fills in or selects",
+        "Process - system action",
+        "Popup - message to user",
+        "Output - system result",
     ]
     for number, ((x, y), label) in enumerate(zip(coords, labels), 1):
         panel(p, x, y, number, label)
@@ -333,8 +333,8 @@ def draw_storyboard(p, screen):
     popup_panel(p, *coords[2], popup)
     output_panel(p, *coords[3], output, layout)
     flow_arrows(p)
-    textbox(p, 22, 748, 360, 18, "Aliran: Input  ->  Proses  ->  Popup  ->  Output", 8, False, "left", "666666")
-    textbox(p, 385, 748, 188, 18, "Boleh diedit dalam Word", 8, False, "right", "666666")
+    textbox(p, 22, 748, 360, 18, "Flow: Input  ->  Process  ->  Popup  ->  Output", 8, False, "left", "666666")
+    textbox(p, 385, 748, 188, 18, "Editable in Word", 8, False, "right", "666666")
 
 
 def set_cell_shading(cell, fill):
@@ -373,7 +373,7 @@ def setup_section(section):
 
 def add_page_number(paragraph):
     paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    run = paragraph.add_run("Muka surat ")
+    run = paragraph.add_run("Page ")
     run.font.name = "Calibri"
     run.font.size = Pt(8)
     begin = OxmlElement("w:fldChar")
@@ -419,7 +419,7 @@ def build_document():
     r.font.size = Pt(22)
     p2 = doc.add_paragraph()
     p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r2 = p2.add_run("20 Lakaran Interface Menggunakan Word Shapes")
+    r2 = p2.add_run("20 Interface Sketches Using Word Shapes")
     r2.font.name = "Calibri"
     r2.font.bold = False
     r2.font.size = Pt(16)
@@ -430,7 +430,7 @@ def build_document():
     table = doc.add_table(rows=4, cols=2)
     table.style = "Table Grid"
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    for row, label in zip(table.rows, ["Nama Ahli 1", "Nama Ahli 2", "Nama Ahli 3", "Kursus / Kelas"]):
+    for row, label in zip(table.rows, ["Member 1", "Member 2", "Member 3", "Course / Class"]):
         row.cells[0].text = label
         row.cells[1].text = "____________________________________________"
         row.cells[0].paragraphs[0].runs[0].bold = True
@@ -441,17 +441,17 @@ def build_document():
     note = doc.add_paragraph()
     note.alignment = WD_ALIGN_PARAGRAPH.CENTER
     note.paragraph_format.space_before = Pt(18)
-    nr = note.add_run("Nota: Semua lakaran dibina menggunakan rectangle, arrow, line dan text box Microsoft Word. Tiada gambar digunakan.")
+    nr = note.add_run("Note: All sketches are built using rectangle, arrow, line and text box in Microsoft Word. No images used.")
     nr.font.name = "Calibri"
     nr.font.size = Pt(9)
     doc.add_page_break()
 
     # Interface index only; the task-allocation section is intentionally omitted.
-    heading(doc, "Senarai 20 Interface")
+    heading(doc, "List of 20 Interfaces")
     index = doc.add_table(rows=1, cols=3)
     index.style = "Table Grid"
     index.alignment = WD_TABLE_ALIGNMENT.CENTER
-    for i, value in enumerate(["Bil.", "Nama interface", "Modul"]):
+    for i, value in enumerate(["No.", "Interface name", "Module"]):
         index.rows[0].cells[i].text = value
         index.rows[0].cells[i].paragraphs[0].runs[0].bold = True
         set_cell_shading(index.rows[0].cells[i], "E7E7E7")
